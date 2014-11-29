@@ -4,7 +4,7 @@ postgresql:
     - DB_USER=gitlab
     - DB_PASS=secretpassword
     - DB_NAME=gitlabhq_production
-   volumes:
+  volumes:
     - ~/volumes/gitlab/sql:/var/lib/postgresql
 gitlab:
   image: sameersbn/gitlab:7.5.1
