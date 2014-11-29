@@ -1,0 +1,20 @@
+postgresql:
+  image: sameersbn/postgresql:9.1-1
+  environment:
+    - DB_USER=gitlab
+    - DB_PASS=secretpassword
+    - DB_NAME=gitlabhq_production
+   volumes:
+    - ~/volumes/gitlab/sql:/var/lib/postgresql
+gitlab:
+  image: sameersbn/gitlab:7.5.1
+  links:
+   - redis:redisio
+   - postgresql:postgresql
+  ports:
+   - "20004:80"
+   - "20005:22"
+  volumes:
+   - ~/volumes/gitlab/git:/home/git/data
+redis:
+  image: sameersbn/redis:latest
