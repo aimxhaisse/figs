@@ -1,0 +1,17 @@
+postgresql:
+  image: sameersbn/postgresql:9.1-1
+  environment:
+    - DB_USER=ttrss
+    - DB_PASS=ttrss
+    - DB_NAME=ttrss
+  volumes:
+    - ~/volumes/rss/sql:/var/lib/postgresql
+
+tinytinyrss:
+  image: clue/ttrss
+  environment:
+    - DB_TYPE=pgsql
+  ports:
+    - "20001:80"
+  links:
+    - postgresql:db
